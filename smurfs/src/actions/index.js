@@ -49,3 +49,29 @@ export const postSmurf = (smurf) => dispatch => {
       });
     });
 }
+
+
+export const DELETE_SMURF_START = 'DELETE_SMURF_START';
+export const DELETE_SMURF_SUCCESS = 'DELETE_SMURF_SUCCESS';
+export const DELETE_SMURF_FAIL = 'DELETE_SMURF_FAIL';
+export const deleteSmurf = (id) => dispatch => {
+  dispatch({
+    type: DELETE_SMURF_START
+  });
+  axios.delete(`http://localhost:3333/smurfs/${id}`)
+    .then(({ data: payload }) => {
+      dispatch({
+        type: DELETE_SMURF_SUCCESS,
+        payload,
+      });
+    })
+    .catch(({ response }) => {
+      dispatch({
+        type: DELETE_SMURF_FAIL,
+        payload: {
+          status: response.status,
+          text: response.statusText,
+        }
+      })
+    });
+}
