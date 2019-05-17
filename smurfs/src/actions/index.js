@@ -24,10 +24,10 @@ export const getSmurfs = () => dispatch => {
     type: GET_SMURFS_START,
   });
   axios.get('http://localhost:3333/smurfs')
-    .then(({ data }) => {
+    .then(({ data: payload }) => {
       dispatch({
         type: GET_SMURFS_SUCCESS,
-        payload: data,
+        payload,
       });
     })
     .catch(({ response }) => {
@@ -56,10 +56,13 @@ export const postSmurf = (smurf) => dispatch => {
         payload,
       });
     })
-    .catch(({ response: payload }) => {
+    .catch(({ response }) => {
       dispatch({
         type: POST_SMURF_FAIL,
-        payload,
+        payload: {
+          status: response.status,
+          text: response.statusText,
+        },
       });
     });
 }
