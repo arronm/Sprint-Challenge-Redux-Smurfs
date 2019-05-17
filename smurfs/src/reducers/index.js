@@ -1,4 +1,4 @@
-import { GET_SMURFS_START, GET_SMURFS_SUCCESS, GET_SMURFS_FAIL, POST_SMURF_START, POST_SMURF_SUCCESS, POST_SMURF_FAIL } from '../actions';
+import { GET_SMURFS_START, GET_SMURFS_SUCCESS, GET_SMURFS_FAIL, POST_SMURF_START, POST_SMURF_SUCCESS, POST_SMURF_FAIL, DELETE_SMURF_START, DELETE_SMURF_SUCCESS, DELETE_SMURF_FAIL } from '../actions';
 
 const initialState = {
   smurfs: [],
@@ -43,6 +43,23 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         asyncAction: false,
         error: `${action.payload.state} ${action.payload.text}`
+      }
+
+    case DELETE_SMURF_START:
+      return {
+        ...state,
+        asyncAction: action.type
+      }
+    case DELETE_SMURF_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        asyncAction: false,
+      }
+    case DELETE_SMURF_FAIL:
+      return {
+        ...state,
+        asyncAction: false,
       }
 
     default:
