@@ -1,6 +1,4 @@
-/*
-  Be sure to import in all of the action types from `../actions`
-*/
+import { GET_SMURFS_START } from '../actions';
 
 const initialState = {
   smurfs: [],
@@ -10,6 +8,9 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_SMURFS_START:
+      console.log('smurfs start');
+      return state;
     default:
       return state;
   }
