@@ -9,11 +9,19 @@ class SmurfList extends Component {
   }
   render() { 
     return (
-      <div>
-        Totally a smurfy list.
+      <div className='SmurfList'>
+        {
+          this.props.smurfs.map(smurf => (
+            <div>{smurf.name}</div>
+          ))
+        }
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  smurfs: state.smurfs,
+});
  
-export default connect(null, { getSmurfs })(SmurfList);
+export default connect(mapStateToProps, { getSmurfs })(SmurfList);
