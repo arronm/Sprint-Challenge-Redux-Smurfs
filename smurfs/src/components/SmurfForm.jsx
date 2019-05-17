@@ -16,6 +16,11 @@ class SmurfForm extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
     this.props.postSmurf({...this.state});
+    this.setState({
+      name: '',
+      age: '',
+      height: '',
+    });
   }
 
   onChangeHandler = (event) => {

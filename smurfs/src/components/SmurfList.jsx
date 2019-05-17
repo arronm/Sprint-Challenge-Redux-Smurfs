@@ -13,7 +13,7 @@ class SmurfList extends Component {
       <div className='SmurfList'>
         {
           this.props.smurfs.map(smurf => (
-            <Smurf {...smurf} />
+            <Smurf {...smurf} key={smurf.id} />
           ))
         }
       </div>

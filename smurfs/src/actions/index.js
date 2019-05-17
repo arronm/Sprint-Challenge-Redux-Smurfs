@@ -50,10 +50,16 @@ export const postSmurf = (smurf) => dispatch => {
     type: POST_SMURF_START,
   });
   axios.post('http://localhost:3333/smurfs/', smurf)
-    .then(({ data }) => {
-      console.log(data);
+    .then(({ data: payload }) => {
+      dispatch({
+        type: POST_SMURF_SUCCESS,
+        payload,
+      });
     })
-    .catch(({ response }) => {
-      console.log(response);
+    .catch(({ response: payload }) => {
+      dispatch({
+        type: POST_SMURF_FAIL,
+        payload,
+      });
     });
 }
